@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weather_API</title>
+<link href="_common/images/favicon.ico" rel="shortcut icon">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,500" rel="stylesheet">
+<link href="_common/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+<div class="container">
+<h1>あなたは今どこにいる？</h1>
+<h2>現在地の緯度・経度を取得する</h2>
+</div><!-- /.container -->
+</header>
+
+<main>
+<div class="container">
+<section>
+<p>あなたは今</p>
+<p id="loc" class="postion"></p>
+<p>の場所にいます。ちなみに精度は半径<span id="accuracy" class="position"></span>mです。</p>
+</section>
+</div><!-- /.container -->
+</main>
+
+<footer>
+<div class="container">
+<p>JavaScript Samples</p>
+</div><!-- /.container -->
+</footer>
+
+<script>
+    'use strict'; 
+    
+    function success(pos){
+        const LAT = pos.coords.latitude; // posオブジェクトからlatitude(緯度)プロパティにアクセスし、その値を定数LATに代入する
+        const LNG = pos.coords.longitude; // longitude(経度)プロパティにアクセスし、その値を定数LNGに代入する
+        const ACCURACY = pos.coords.accuracy; // accuracy(精度)プロパティにアクセスし、その値を定数ACCURACYに代入する
+
+        document.querySelector('#loc').textContent = `緯度: ${LAT} 経度: ${LNG}`; // id="#loc"の要素を取得し、そのtextの内容を書き換える
+        document.querySelector('#accuracy').textContent = `${ACCURACY}`; // id="accuracy"の要素を取得し、そのtextの内容を書き換える
+    }
+
+    function fail(error){
+        alert('位置情報の取得に失敗しました。エラーコード:' + error.code);
+    }
+    
+    navigator.geolocation.getCurrentPosition(success, fail); //navigatorオブジェクトのgeolocationオブジェクトのgetCurentPositionで現在位置を取得する
+</script>
+</body>
+</html>
