@@ -32,24 +32,7 @@
 <p>JavaScript Samples</p>
 </div><!-- /.container -->
 </footer>
-
-<script>
-    'use strict'; 
-    
-    function success(pos){
-        const LAT = pos.coords.latitude; // posオブジェクトからlatitude(緯度)プロパティにアクセスし、その値を定数LATに代入する
-        const LNG = pos.coords.longitude; // longitude(経度)プロパティにアクセスし、その値を定数LNGに代入する
-        const ACCURACY = pos.coords.accuracy; // accuracy(精度)プロパティにアクセスし、その値を定数ACCURACYに代入する
-
-        document.querySelector('#loc').textContent = `緯度: ${LAT} 経度: ${LNG}`; // id="#loc"の要素を取得し、そのtextの内容を書き換える
-        document.querySelector('#accuracy').textContent = `${ACCURACY}`; // id="accuracy"の要素を取得し、そのtextの内容を書き換える
-    }
-
-    function fail(error){
-        alert('位置情報の取得に失敗しました。エラーコード:' + error.code);
-    }
-    
-    navigator.geolocation.getCurrentPosition(success, fail); //navigatorオブジェクトのgeolocationオブジェクトのgetCurentPositionで現在位置を取得する
-</script>
+<script src="jquery-3.4.1.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
